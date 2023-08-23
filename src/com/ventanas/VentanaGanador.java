@@ -2,7 +2,8 @@ package com.ventanas;
 
 /**
  *
- * @author dainer
+ * @author Dainer Cortes
+ * @version 1.0
  */
 public class VentanaGanador extends javax.swing.JDialog {
 
@@ -10,6 +11,7 @@ public class VentanaGanador extends javax.swing.JDialog {
     
     /**
      * Creates new form Ganador
+     * El contructor recibe la variable jugador
      */
     public VentanaGanador(java.awt.Frame parent, boolean modal, String jugador) {
         super(parent, modal);
@@ -124,22 +126,42 @@ public class VentanaGanador extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Finaliza la ejecución de todo el programa
+     * @param evt 
+     */
     private void lblCerrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMousePressed
         System.exit(0);
     }//GEN-LAST:event_lblCerrarMousePressed
 
+    /**
+     * Finaliza la ejecución de todo el programa
+     * @param evt 
+     */
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    /**
+     * Cierra la ventana
+     * @param evt 
+     */
     private void btnJugarDeNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarDeNuevoActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnJugarDeNuevoActionPerformed
 
+    /**
+     * Este evento permite mover el formulario en toda la pantalla mediante una libreria
+     * @param evt 
+     */
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         FiveCodMover.FiveCodMoverJDialog.MousePressed(evt);
     }//GEN-LAST:event_formMousePressed
 
+    /**
+     * Este evento permite mover el formulario en toda la pantalla mediante una libreria
+     * @param evt 
+     */
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         FiveCodMover.FiveCodMoverJDialog.MouseDraggedJDialog(evt, this);
     }//GEN-LAST:event_formMouseDragged

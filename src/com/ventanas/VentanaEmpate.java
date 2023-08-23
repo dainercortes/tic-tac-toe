@@ -4,7 +4,8 @@ import FiveCodMover.FiveCodMoverJFrame;
 
 /**
  *
- * @author dainer
+ * @author Dainer Cortes
+ * @version 1.0
  */
 public class VentanaEmpate extends javax.swing.JDialog {
 

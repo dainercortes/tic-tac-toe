@@ -16,7 +16,8 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author dainer
+ * @author Dainer Cortés
+ * @version 1.0
  */
 public class VentanaJuego extends javax.swing.JFrame {
 
@@ -26,6 +27,12 @@ public class VentanaJuego extends javax.swing.JFrame {
     private String jugador1, jugador2;
     private int vecesGano1, vecesGano2, vecesEmpate;
     
+    /**
+     * El metodo contrucotr recibe varios parametros e inicializa
+     * algunos metodos de la clase
+     * @param jugador1
+     * @param jugador2 
+     */
     public VentanaJuego(String jugador1, String jugador2) {      
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
@@ -39,29 +46,85 @@ public class VentanaJuego extends javax.swing.JFrame {
     }
 
     
-    
+    /**
+     * Metodo para llenar las casillas de la cuadricula
+     */
     private void llenarCasillas(){
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                this.casilla[i][j] = true;
+        try {
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    this.casilla[i][j] = true;
+                }
             }
+        } catch (Exception e) {
+            e.getMessage();
         }
     }
     
+    /**
+     * Metodo para llenar la matriz que simula la cuadricula
+     */
     private void llenarMatriz(){
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                this.matriz[i][j] = 0;
+        try {
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    this.matriz[i][j] = 0;
+                }
             }
+        } catch (Exception e) {
+            e.getMessage();
+        }      
+    }
+    
+    /**
+     * Metodo para dibujar el icino de X cuando el jugador lo presione
+     * @param boton 
+     */
+    private void dibujarX(JButton boton) {  
+        try {
+            boton.setIcon(new ImageIcon(getClass().getResource("/com/img/x.png")));
+        } catch (Exception e) {
+            e.getMessage();
         }
     }
     
-    private void dibujarX(JButton boton) {      
-        boton.setIcon(new ImageIcon(getClass().getResource("/com/img/x.png")));
+    /**
+     * Metodo para dibujar el icino de O cuando el jugador lo presione
+     * @param boton 
+     */
+    private void dibujarO(JButton boton) {
+        try {
+            boton.setIcon(new ImageIcon(getClass().getResource("/com/img/o.png")));         
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
     
-    private void dibujarO(JButton boton) {
-        boton.setIcon(new ImageIcon(getClass().getResource("/com/img/o.png")));
+    /**
+     * Este metodo valida que casilla se selecciono y si esta disponible coloca el icono del jugador
+     * @param btn
+     * @param posY
+     * @param posX 
+     */
+    private void ColocarEleccionJugador(JButton btn, int posY, int posX) {
+        try {
+            if(casilla[posY][posX]) {
+                if(this.turno.equals("jugador1")) { //Turno jugador uno
+                    this.dibujarX(btn);
+                    this.matriz[posY][posX] = 1;
+                    this.turno = "jugador2";
+                } else { //Turno jugador dos
+                    this.dibujarO(btn);
+                    this.matriz[posY][posX] = 2;
+                    this.turno = "jugador1";
+                }
+
+                casilla[posY][posX] = false;
+                this.comprobarGanador();
+            } 
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
     
     /**
@@ -314,217 +377,139 @@ public class VentanaJuego extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+ 
     private void btn0_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0_0ActionPerformed
-        if(casilla[0][0]) {
-            if(this.turno.equals("jugador1")) { //Turno jugador uno
-                this.dibujarX(btn0_0);
-                this.matriz[0][0] = 1;
-                this.turno = "jugador2";
-            } else { //Turno jugador dos
-                this.dibujarO(btn0_0);
-                this.matriz[0][0] = 2;
-                this.turno = "jugador1";
-            }
-            
-            casilla[0][0] = false;
-            this.comprobarGanador();
-        }
+        this.ColocarEleccionJugador(this.btn0_0, 0, 0);      
     }//GEN-LAST:event_btn0_0ActionPerformed
 
     private void btn0_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0_1ActionPerformed
-        if(casilla[0][1]) {
-            if(this.turno.equals("jugador1")) { //Turno jugador uno
-                this.dibujarX(btn0_1);
-                this.matriz[0][1] = 1;
-                turno = "jugador2";
-            } else { //Turno jugador dos
-                this.dibujarO(btn0_1);
-                this.matriz[0][1] = 2;
-                this.turno = "jugador1";
-            }
-            
-            casilla[0][1] = false;
-            this.comprobarGanador();
-        }
+        this.ColocarEleccionJugador(this.btn0_1, 0, 1);       
     }//GEN-LAST:event_btn0_1ActionPerformed
 
     private void btn0_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0_2ActionPerformed
-        if(casilla[0][2]) {
-            if(this.turno.equals("jugador1")) { //Turno jugador uno
-                this.dibujarX(btn0_2);
-                this.matriz[0][2] = 1;
-                turno = "jugador2";
-            } else { //Turno jugador dos
-                this.dibujarO(btn0_2);
-                this.matriz[0][2] = 2;
-                this.turno = "jugador1";
-            }
-            
-            casilla[0][2] = false;
-            this.comprobarGanador();
-        }
+        this.ColocarEleccionJugador(this.btn0_2, 0, 2);        
     }//GEN-LAST:event_btn0_2ActionPerformed
 
     private void btn1_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1_0ActionPerformed
-        if(casilla[1][0]) {
-            if(this.turno.equals("jugador1")) { //Turno jugador uno
-                this.dibujarX(btn1_0);
-                this.matriz[1][0] = 1;
-                turno = "jugador2";
-            } else { //Turno jugador dos
-                this.dibujarO(btn1_0);
-                this.matriz[1][0] = 2;
-                this.turno = "jugador1";
-            }
-            
-            casilla[1][0] = false;
-            this.comprobarGanador();
-        }
+        this.ColocarEleccionJugador(this.btn1_0, 1, 0);        
     }//GEN-LAST:event_btn1_0ActionPerformed
 
     private void btn1_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1_1ActionPerformed
-        if(casilla[1][1]) {
-            if(this.turno.equals("jugador1")) { //Turno jugador uno
-                this.dibujarX(btn1_1);
-                this.matriz[1][1] = 1;
-                turno = "jugador2";
-            } else { //Turno jugador dos
-                this.dibujarO(btn1_1);
-                this.matriz[1][1] = 2;
-                this.turno = "jugador1";
-            }
-            
-            casilla[1][1] = false;
-            this.comprobarGanador();       
-        }
+        this.ColocarEleccionJugador(this.btn1_1, 1, 1);
     }//GEN-LAST:event_btn1_1ActionPerformed
 
     private void btn1_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1_2ActionPerformed
-        if(casilla[1][2]) {
-            if(this.turno.equals("jugador1")) { //Turno jugador uno
-                this.dibujarX(btn1_2);
-                this.matriz[1][2] = 1;
-                turno = "jugador2";
-            } else { //Turno jugador dos
-                this.dibujarO(btn1_2);
-                this.matriz[1][2] = 2;
-                this.turno = "jugador1";
-            }
-            
-            casilla[1][2] = false;
-            this.comprobarGanador();
-        }
+        this.ColocarEleccionJugador(this.btn1_2, 1, 2);
     }//GEN-LAST:event_btn1_2ActionPerformed
 
     private void btn2_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2_0ActionPerformed
-        if(casilla[2][0]) {
-            if(this.turno.equals("jugador1")) { //Turno jugador uno
-                this.dibujarX(btn2_0);
-                this.matriz[2][0] = 1;
-                turno = "jugador2";
-            } else { //Turno jugador dos
-                this.dibujarO(btn2_0);
-                this.matriz[2][0] = 2;
-                this.turno = "jugador1";
-            }
-            
-            casilla[2][0] = false;
-            this.comprobarGanador();
-        }
+        this.ColocarEleccionJugador(this.btn2_0, 2, 0);
     }//GEN-LAST:event_btn2_0ActionPerformed
 
     private void btn2_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2_1ActionPerformed
-        if(casilla[2][1]) {
-            if(this.turno.equals("jugador1")) { //Turno jugador uno
-                this.dibujarX(btn2_1);
-                this.matriz[2][1] = 1;
-                turno = "jugador2";
-            } else { //Turno jugador dos
-                this.dibujarO(btn2_1);
-                this.matriz[2][1] = 2;
-                this.turno = "jugador1";
-            }
-            
-            casilla[2][1] = false;
-            this.comprobarGanador();
-        }
+        this.ColocarEleccionJugador(this.btn2_1, 2, 1);
     }//GEN-LAST:event_btn2_1ActionPerformed
 
     private void btn2_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2_2ActionPerformed
-        if(casilla[2][2]) {
-            if(this.turno.equals("jugador1")) { //Turno jugador uno
-                this.dibujarX(btn2_2);
-                this.matriz[2][2] = 1;
-                turno = "jugador2";
-            } else { //Turno jugador dos
-                this.dibujarO(btn2_2);
-                this.matriz[2][2] = 2;
-                this.turno = "jugador1";
-            }
-            
-            casilla[2][2] = false;
-            this.comprobarGanador();
-        }
+        this.ColocarEleccionJugador(this.btn2_2, 2, 2);
     }//GEN-LAST:event_btn2_2ActionPerformed
 
+    /**
+     * Este evento permite mover el formulario en toda la pantalla mediante una libreria
+     * @param evt 
+     */
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         FiveCodMoverJFrame.MousePressed(evt);
     }//GEN-LAST:event_formMousePressed
 
+    /**
+     * Este evento permite mover el formulario en toda la pantalla mediante una libreria
+     * @param evt 
+     */
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
     }//GEN-LAST:event_formMouseDragged
 
+    /**
+     * Abre la ventana de Opciones
+     * @param evt 
+     */
     private void lblOpcionesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcionesMousePressed
         VentanaOpciones vto = new VentanaOpciones(this, true, this.jugador1, this.jugador2, this.vecesGano1, this.vecesGano2, this.vecesEmpate);
         vto.setVisible(true);
     }//GEN-LAST:event_lblOpcionesMousePressed
 
+    /**
+     * Finaliza la ejecución del programa
+     * @param evt 
+     */
     private void lblCerrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMousePressed
         System.exit(0);
     }//GEN-LAST:event_lblCerrarMousePressed
 
+    /**
+     * Minimiza la ventana
+     * @param evt 
+     */
     private void lblMinimizarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMousePressed
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_lblMinimizarMousePressed
 
+    /**
+     * Abre la ventana que muestra el ganador
+     * @param jugador 
+     */
+    private void AbrirVentanaGanador(String jugador) {
+        VentanaGanador vtg = new VentanaGanador(this, true, jugador);
+        vtg.setVisible(true);
+        this.reiniciarJuego();
+    }
+    /**
+     * Este metodo comprueba cual de los dos jugadores gano
+     */
     private void comprobarGanador() {
-        boolean ganador1 = false;
-        boolean ganador2  = false;
-        int casillasEmpate = 0;
-        
-        ganador1 = comprobar(1);
-        ganador2 = comprobar(2);
-        
-        if(ganador1) {
-            this.vecesGano1++;
-            VentanaGanador vtg = new VentanaGanador(this, true, jugador1);
-            vtg.setVisible(true);
-            this.reiniciarJuego();
-        } else if (ganador2) {
-            this.vecesGano2++;
-            VentanaGanador vtg = new VentanaGanador(this, true, jugador2);
-            vtg.setVisible(true);
-            this.reiniciarJuego();
-        } else {            
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    if(matriz[i][j] != 0) {
-                        casillasEmpate++;
+        try {
+            boolean ganador1 = false;
+            boolean ganador2  = false;
+            int casillasEmpate = 0;
+
+            ganador1 = comprobar(1);
+            ganador2 = comprobar(2);
+
+            if(ganador1) {
+                this.vecesGano1++;
+                this.AbrirVentanaGanador(jugador1);
+            } else if (ganador2) {
+                this.vecesGano2++;
+                this.AbrirVentanaGanador(jugador2);
+            } else {            
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        if(matriz[i][j] != 0) {
+                            casillasEmpate++;
+                        }
                     }
                 }
+                if(casillasEmpate == 9) {
+                    this.vecesEmpate++;
+                    VentanaEmpate vte = new VentanaEmpate(this, true);
+                    vte.setVisible(true);
+                    this.reiniciarJuego();
+                } else {
+                    casillasEmpate = 0;
+                }
             }
-            if(casillasEmpate == 9) {
-                this.vecesEmpate++;
-                VentanaEmpate vte = new VentanaEmpate(this, true);
-                vte.setVisible(true);
-                this.reiniciarJuego();
-            } else {
-                casillasEmpate = 0;
-            }
-        }
+        } catch (Exception e) {
+            e.getMessage();
+        }  
     }   
     
+    /**
+     * Este metodo comprueba si el jugador realizo alguna combinación ganadora
+     * si es asi entonces retorna quien gano
+     * @param num
+     * @return 
+     */
     private boolean comprobar(int num) {
         boolean ganador = false;
         
@@ -554,12 +539,18 @@ public class VentanaJuego extends javax.swing.JFrame {
         return ganador;
     }
     
+    /**
+     * Metodo que reinicia los puntos del juego
+     */
     public void reiniciarPuntos() {
         this.vecesGano1 = 0; 
         this.vecesGano2 = 0; 
         this.vecesEmpate  = 0;
     }
     
+    /**
+     * Metodo que reinicia el juego por completo
+     */
     public void reiniciarJuego() {
         this.llenarCasillas();
         this.llenarMatriz();
@@ -577,6 +568,9 @@ public class VentanaJuego extends javax.swing.JFrame {
         this.quienJuegaPrimero();
     }
     
+    /**
+     * Metodo que abre la ventana para elegir quien lanza el primer turno
+     */
     private void quienJuegaPrimero() {
         VentanaEscogerTurno vet = new VentanaEscogerTurno(this, true, this.jugador1, this.jugador2);
         vet.setVisible(true);

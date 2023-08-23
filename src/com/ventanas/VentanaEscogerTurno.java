@@ -2,7 +2,8 @@ package com.ventanas;
 
 /**
  *
- * @author dainer
+ * @author Dainer Cortes
+ * @version 1.0
  */
 public class VentanaEscogerTurno extends javax.swing.JDialog {
 
@@ -15,6 +16,7 @@ public class VentanaEscogerTurno extends javax.swing.JDialog {
     
     /**
      * Creates new form VentanaEscogerTurno
+     * El contructor recibe varios parametros de otros formularios
      */
     public VentanaEscogerTurno(java.awt.Frame parent, boolean modal, String jugador1, String jugador2) {
         super(parent, modal);
@@ -107,20 +109,36 @@ public class VentanaEscogerTurno extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Inicia el jugador 1
+     * @param evt 
+     */
     private void btnJugador1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugador1ActionPerformed
         this.turno = "jugador1";
         dispose();
     }//GEN-LAST:event_btnJugador1ActionPerformed
 
+    /**
+     * Inicia el jugador 2
+     * @param evt 
+     */
     private void btnJugador2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugador2ActionPerformed
         this.turno = "jugador2";
         dispose();
     }//GEN-LAST:event_btnJugador2ActionPerformed
 
+    /**
+     * Este evento permite mover el formulario en toda la pantalla mediante una libreria
+     * @param evt 
+     */
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         FiveCodMover.FiveCodMoverJDialog.MousePressed(evt);
     }//GEN-LAST:event_formMousePressed
 
+    /**
+     * Este evento permite mover el formulario en toda la pantalla mediante una libreria
+     * @param evt 
+     */
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         FiveCodMover.FiveCodMoverJDialog.MouseDraggedJDialog(evt, this);
     }//GEN-LAST:event_formMouseDragged
